@@ -1,34 +1,16 @@
-﻿@page
+﻿@page "{length:int?}"
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
 }
 
 <div class="text-center">
+    <h1 class="display-4">Welcome to File Name Generator</h1>
 
-    <input type="number" id="fileNameLength" placeholder="File length" min="1" />
-    <button class="btn btn-primary" onclick="generateFileName()">Generate</button>
+    <form method="get">
+        <input type="number" name="length" placeholder="Enter length" min="1"/>
+        <button class="btn btn-primary" type="submit">Згенерувати</button>
+    </form>
 
-    <p>File name: <span id="generatedFileName" class="font-weight-bold"></span></p>
+    <p>File name: <span class="font-weight-bold">@Model.GeneratedFileName</span></p>
 </div>
-
-@section Scripts {
-    <script>
-        function generateFileName() {
-            const length = parseInt(document.getElementById('fileNameLength').value, 10);
-            if (length > 0) {
-                const allowedChars = "abcdefghijklmnopqrstuvwxyz0123456789";
-                let fileName = '';
-
-                for (let i = 0; i < length; i++) {
-                    const randomIndex = Math.floor(Math.random() * allowedChars.length);
-                    fileName += allowedChars[randomIndex];
-                }
-
-                document.getElementById('generatedFileName').textContent = fileName;
-            } else {
-                alert('Enter correct length!');
-            }
-        }
-    </script>
-}

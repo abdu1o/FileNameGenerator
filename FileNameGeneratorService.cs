@@ -21,6 +21,5 @@ namespace FileNameGenerator
 
             return fileName.ToString();
         }
-
     }
 }
